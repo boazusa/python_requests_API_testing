@@ -58,38 +58,28 @@ def test_api_key_parametrize(get_api_keys, _city, _status_code):
         print(f"Failed to retrieve data. Status code: {response.status_code}")
 
 
-def test_api_key():
+def test_api_key_err(get_api_keys):
     # Example: Using requests to Call a Public API:
     # Calling a public API (for example, OpenWeatherMap)
-    API_KEY = '214adb730e455460b36de542f44a059c'
-    # API_KEY = '6e22f9e727115df87ddb05c7b8bd6157'
-    # API_KEY = 'YOUR_API_KEY_from_openweathermap.org'
+    API_KEY = get_api_keys[0][:3] + get_api_keys[0][3:]  # API_KEY possible err code 401
+    API_KEY_2 = get_api_keys[1][:3] + get_api_keys[1][3:]
+
     city = 'Tel Aviv'
-    # city = 'Detroit'
-    # city = 'Miami'
-    # city = 'fort lauderdale'
-    # city = 'Lauderhill'
 
     url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}'
     print(url.replace(' ', '%20'))
     response = requests.get(url)
+    #
+    assert response.status_code == 401, f"Expected response.status_code 401" \
+                                        f" but got {response.status_code}"
 
     params = {'q': f'{city}', 'appid': f'{API_KEY}'}
     url = f'http://api.openweathermap.org/data/2.5/weather'
     print(url.replace(' ', '%20'))
     response = requests.get(url, params=params)
-
-    assert response.status_code == 200, f"Expected response.status_code 200" \
+    #
+    assert response.status_code == 401, f"Expected response.status_code 401" \
                                         f" but got {response.status_code}"
-    if response.status_code == 200:
-        print(response.status_code)
-        data = response.json()
-        print(f"Weather in {city}: {data['weather'][0]['description']}")
-        print(data)
-        print(
-            f"Weather in {city}: {data['weather'][0]['description']}, temp: {'%.0f' % (data['main']['temp'] - 273.15)} c")
-    else:
-        print(f"Failed to retrieve data. Status code: {response.status_code}")
 
 
 # if __name__ == "__main__":
