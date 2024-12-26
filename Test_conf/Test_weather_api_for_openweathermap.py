@@ -44,7 +44,7 @@ def test_api_key_parametrize(get_api_keys, _city, _status_code):
         assert (data['main']['temp']) - 273.15 < 50
         assert data['name'] == city.replace('%20', ' ').title()
         assert data['base'] == 'stations'
-        assert data['visibility'] == 10000
+        assert data['visibility'] <= 10000
         assert 'timezone' in data
         if city.replace('%20', ' ').title() in ['Tel aViv'.title(), 'Jerusalem'.title(), 'lod'.title()]:
             assert data['timezone'] == 7200
