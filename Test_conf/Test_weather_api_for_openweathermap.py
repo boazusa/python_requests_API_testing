@@ -61,8 +61,8 @@ def test_api_key_parametrize(get_api_keys, _city, _status_code):
 def test_api_key_err(get_api_keys):
     # Example: Using requests to Call a Public API:
     # Calling a public API (for example, OpenWeatherMap)
-    API_KEY = get_api_keys[0][:3] + get_api_keys[0][3:]  # API_KEY possible err code 401
-    API_KEY_2 = get_api_keys[1][:3] + get_api_keys[1][3:]
+    API_KEY = get_api_keys[0][3:] + get_api_keys[0][:3]  # API_KEY possible err code 401
+    API_KEY_2 = get_api_keys[0][:3] + get_api_keys[1][3:]
 
     city = 'Tel Aviv'
 
