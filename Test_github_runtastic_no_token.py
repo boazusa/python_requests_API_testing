@@ -55,7 +55,7 @@ def test_github_list_files_my_runtastic_project():
     url = 'https://api.github.com/repos/boazusa/runtastic-analysis-boaz/contents/runtastic-activities-analisys'
     # response = requests.get(url)
     response = requests.get(url)
-    assert response.status_code == 404
+    assert response.status_code == 404, f"expected status_code 404, but received {response.status_code}"
 
 
 def test_file_download_from_github():

@@ -149,7 +149,7 @@ def test_requests_get_timeout():
 
     assert response.status_code == 200, f"Expected response.status_code 200, but got {response.status_code}"
     with pytest.raises(requests.exceptions.Timeout):
-        requests.get('https://httpbin.org/delay/3', timeout=1)  # 3 seconds delay, 2 seconds timeout
+        requests.get('https://httpbin.org/delay/5', timeout=2)  # 5 seconds delay, 2 seconds timeout
     # with pytest.raises(TimeoutError):
     #     requests.get('https://httpbin.org/delay/3', timeout=1)  # 3 seconds delay, 1 seconds timeout
 
