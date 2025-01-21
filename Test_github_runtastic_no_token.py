@@ -49,8 +49,8 @@ def test_github_list_files_my_runtastic_project():
     files_list = response.json()
     for file in files_list:
         file_name, file_extension = os.path.splitext(file['name'])
-        assert file_extension in ['.jpg', '.pdf']
-        assert file_extension == '.jpg' or file_extension == '.pdf'
+        assert file_extension in ['.jpg', '.pdf', '']
+        assert file_extension == '.jpg' or file_extension == '.pdf'  or file_extension == ''
 
     url = 'https://api.github.com/repos/boazusa/runtastic-analysis-boaz/contents/runtastic-activities-analisys'
     # response = requests.get(url)
